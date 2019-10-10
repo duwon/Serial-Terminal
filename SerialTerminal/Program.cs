@@ -1,20 +1,20 @@
-﻿using System;
+﻿/* 출처 : 네이트 통 - ryu0423님 */
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO.Ports;    // SerialPort 클래스 사용을 위해서 추가
 using System.Threading;    // Thread 클래스 사용을 위해서 추가
 
-namespace RS232
+namespace SerialTerminal
 {
     class Serial
     {
+
         static void Main(string[] args)
         {
-            Serial ps = new Serial(args);    // 해당 객체를 생성하고, start시킵니다.
-            ps.Open();
-            ps.Start();
+            Serial sp = new Serial(args);    // 해당 객체를 생성하고, start시킵니다.
+            sp.Open();
+            sp.Start();
         }
 
         private SerialPort port;    // 시리얼포트 선언
@@ -62,29 +62,28 @@ namespace RS232
         {
             try
             {
-                port = new SerialPort(spPort, spBaudRate, Parity.None, 8);
-                /*
-                port = new SerialPort();
-                port.PortName = spPort;
-                port.BaudRate = spBaudRate;
-                port.Parity = Parity.None;
-                port.DataBits = 8;
-                port.StopBits = StopBits.One;
-                */
-
-                port.Open();
+                port = new SerialPort(spPort, spBaudRate, Parity.None, 8);    // 이건 제 설정에 맞춰서 함
+                                                                          /*  아래처럼 개별적으로 설정가능합니다.(UI구성시 입력폼으로 받아서 설정하면 되겠지요)
+                                                                          port = new SerialPort();
+                                                                          port.PortName = "COM1";
+                                                                          port.BaudRate = 115200;
+                                                                          port.Parity = Parity.None;
+                                                                          port.DataBits = 8;
+                                                                          port.StopBits = StopBits.One;
+                                                                          */
+                port.Open();  // 설정된 포트를 엽니다.
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Environment.Exit(0);
             }
         }
 
         public void Start()
         {
-            reader = new Thread(new ThreadStart(Read)); 
+            reader = new Thread(new ThreadStart(Read));    // Read()를 수행하는 스레드 reader 생성
             reader.IsBackground = true;    // read는 백그라운드에서 수행하고,
+            reader.Start();  // reader 스레드를 실행
             writer = new Thread(new ThreadStart(Write));    // Write()를 수행하는 스레드 writer 생성
             writer.Start();    // write는 실제적으로 콘솔창에 입력해야 하므로 foreground로 수행하게 합니다.
         }
@@ -95,7 +94,7 @@ namespace RS232
             for (; ; )
             {
                 port.WriteLine(Console.ReadLine());  // 계속 반복하면서 입력된 데이터가 있으면 열려잇는 포트로 데이터 전송
-                Thread.Sleep(200);    // 200ms마다 스레드를 잠재워서 다른 스레드가 수행가능하게 합니다.(요건 스레드 프로그래밍을 해보셨으면 아시리라 생각...=_=
+                Thread.Sleep(200);
             }
         }
 
@@ -105,12 +104,9 @@ namespace RS232
             for (; ; )
             {
                 Console.Write(port.ReadExisting());    // 열려있는 포트에서 데이터가 존재하면 읽어봐서 콘솔창에 뿌립니다.
-                Thread.Sleep(200);    // 위와 마찬가지 이유로 sleep시킴
+                Thread.Sleep(200);
             }
         }
 
-
     }
 }
-
-

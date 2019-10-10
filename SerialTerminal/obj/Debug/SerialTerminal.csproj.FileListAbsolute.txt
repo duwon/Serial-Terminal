@@ -1,0 +1,7 @@
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\bin\Debug\SerialTerminal.exe.config
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\bin\Debug\SerialTerminal.exe
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\bin\Debug\SerialTerminal.pdb
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.csprojAssemblyReference.cache
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.csproj.CoreCompileInputs.cache
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.exe
+C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.pdb

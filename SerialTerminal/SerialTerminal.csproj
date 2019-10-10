@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1A1BA0F8-8C04-4533-BDB6-FDB2FF8BD31A}</ProjectGuid>
+    <ProjectGuid>{B03CB235-0DC4-49D7-83D4-A3413F0ECAA5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RS232</RootNamespace>
-    <AssemblyName>RS232</AssemblyName>
+    <RootNamespace>SerialTerminal</RootNamespace>
+    <AssemblyName>SerialTerminal</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
