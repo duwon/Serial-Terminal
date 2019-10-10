@@ -1,0 +1,7 @@
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\RS232.csprojAssemblyReference.cache
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\RS232.csproj.CoreCompileInputs.cache
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\RS232.exe.config
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\RS232.exe
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\RS232.pdb
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\RS232.exe
+C:\Users\duwon\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\RS232.pdb
