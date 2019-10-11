@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO.Ports;    // SerialPort 클래스 사용을 위해서 추가
 using System.Threading;    // Thread 클래스 사용을 위해서 추가
+using System.Management;
 
 namespace SerialTerminal
 {
@@ -38,7 +39,16 @@ namespace SerialTerminal
 
             if (spPort == null)
             {
-                Console.Write("COM Port : ");
+                // Get a list of serial port names.
+                string[] ports = SerialPort.GetPortNames();
+                Console.WriteLine("COM Port List :");
+                // Display each port name to the console.
+                foreach (string port in ports)
+                {
+                    Console.WriteLine(port);
+                }
+
+                Console.Write("\r\nCOM Port : ");
                 spPort = "COM" + Console.ReadLine();
             }
 
