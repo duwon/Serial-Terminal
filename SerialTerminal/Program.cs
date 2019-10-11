@@ -82,6 +82,7 @@ namespace SerialTerminal
                                                                           port.StopBits = StopBits.One;
                                                                           */
                 port.Open();  // 설정된 포트를 엽니다.
+                Console.Title = spPort;
             }
             catch (Exception e)
             {
