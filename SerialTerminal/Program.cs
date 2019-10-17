@@ -20,7 +20,7 @@ namespace SerialTerminal
         }
 
         private SerialPort port;    // 시리얼포트 선언
-        private Thread reader, writer, portChecker;    // 시리얼을 통해서 데이터를 읽고, 쓸 스레드 준비
+        private Thread reader, writer;    // 시리얼을 통해서 데이터를 읽고, 쓸 스레드 준비
         private string spPort;
         private int spBaudRate = 0;
 
@@ -103,7 +103,9 @@ namespace SerialTerminal
                 port.DataReceived += DataReceived; //수신 인터럽트 추가
                 port.Open();
                 Console.Title = spPort;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Connected.");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
             catch (Exception e)
             {
@@ -117,7 +119,9 @@ namespace SerialTerminal
             if (port.IsOpen)
             {
                 port.Close();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\r\nDisconnected.");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
         }
 
@@ -162,13 +166,6 @@ namespace SerialTerminal
             writer = new Thread(new ThreadStart(Write));    // Write()를 수행하는 스레드 writer 생성
             writer.Start();                 // write는 실제적으로 콘솔창에 입력해야 하므로 foreground로 수행
 
-        }
-
-        public void Stop()
-        {
-            reader.Abort();
-            writer.Abort();
-            portChecker.Abort();
         }
 
         // Writer thread for Serial port
