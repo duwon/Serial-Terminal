@@ -5,3 +5,10 @@ C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTermin
 C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.csproj.CoreCompileInputs.cache
 C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.exe
 C:\Users\duwon\source\repos\SerialTerminal\SerialTerminal\obj\Debug\SerialTerminal.pdb
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\bin\Debug\SerialTerminal.exe.config
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\bin\Debug\SerialTerminal.exe
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\bin\Debug\SerialTerminal.pdb
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\obj\Debug\SerialTerminal.csprojAssemblyReference.cache
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\obj\Debug\SerialTerminal.csproj.CoreCompileInputs.cache
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\obj\Debug\SerialTerminal.exe
+C:\Users\duwon\Documents\Git\Serial-Terminal\SerialTerminal\obj\Debug\SerialTerminal.pdb
