@@ -1,28 +1,39 @@
 ﻿/* 참고 : http://hoons.net/Board/cshaptip/Content/5035 */
 /* 참고 : http://greenday96.blogspot.com/2016/06/c-simple-c-source-code-for-serial.html */
+
+#define GUI
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO.Ports;     // SerialPort 클래스 사용을 위해서 추가
 using System.Threading;    // Thread 클래스 사용을 위해서 추가
 using System.Management;
+using System.Windows.Forms;
 
 namespace SerialTerminal
 {
-    class Serial
+    public class Serial
     {
 
         static void Main(string[] args)
         {
+#if (GUI)
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            SerialForm sf = new SerialForm();
+            Application.Run(sf);
+#else
             Serial sp = new Serial(args);    // 해당 객체를 생성하고, start
             sp.Open();
             sp.Start();
+#endif
         }
 
         private SerialPort port;    // 시리얼포트 선언
         private Thread reader, writer;    // 시리얼을 통해서 데이터를 읽고, 쓸 스레드 준비
-        private string spPort;
-        private int spBaudRate = 0;
+        public string spPort;
+        public int spBaudRate = 0;
 
         public Serial(string[] args)
         {
@@ -202,7 +213,12 @@ namespace SerialTerminal
                             Reset();
                             Set(null);
                             Open();
-                            
+                            break;
+                        case "G":
+                            Thread serialFormThread;
+                            serialFormThread = new Thread(new ThreadStart(OpenGUI));    // Write()를 수행하는 스레드 writer 생성
+                            serialFormThread.Start();                 // write는 실제적으로 콘솔창에 입력해야 하므로 foreground로 수행
+                            writer.Abort();
                             break;
 
                     }
@@ -228,8 +244,40 @@ namespace SerialTerminal
             }
         }
 
+        public void WritePacket(byte[] packetData)
+        {
+            port.Write(packetData,0,packetData.Length);
+        }
 
+        public void OpenGUI()
+        {
+            Close();
+            
+            foreach(Form openForm in Application.OpenForms)
+            if(openForm.Name == "시리얼통신 테스트 프로그램") // 중복실행 방지
+            {
+                if (openForm.WindowState == FormWindowState.Minimized)
+                {
+                        openForm.WindowState = FormWindowState.Normal;
+                }
+                openForm.Activate();
+            }
 
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            SerialForm sf = new SerialForm(spPort, spBaudRate);
+            sf.SerialForm_ClosEvent += serialFormCloseEventMethod;
+            Application.Run(sf);
 
+            writer = new Thread(new ThreadStart(Write));
+            writer.Start();
+            Open();
+        }
+
+        public void serialFormCloseEventMethod(string _spPort, int _spBaudRate)
+        {
+            spPort = _spPort;
+            spBaudRate = _spBaudRate;
+        }
     }
 }
